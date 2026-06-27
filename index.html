@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Apoyo Joven: programas, talleres, voluntariado, preuniversitario y actividades para jóvenes.">
+  <meta name="theme-color" content="#0f766e">
+  <title>Apoyo Joven | Crece, participa y aprende</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" id="inicio">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <span class="brand-mark" aria-hidden="true">AJ</span>
+        <span>Apoyo Joven</span>
+      </a>
+
+      <button class="icon-button menu-button" id="menu-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <a href="#programas">Programas</a>
+        <a href="#actividades">Actividades</a>
+        <a href="#voluntariado">Voluntariado</a>
+        <a href="#preuniversitario">Preuniversitario</a>
+        <a href="#galeria">Galería</a>
+        <a href="#soporte">Soporte</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="button button-ghost hidden" id="admin-button" type="button">Panel</button>
+        <button class="button button-primary" id="auth-button" type="button">Ingresar</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Oportunidades para jóvenes</span>
+          <h1>Un espacio para aprender, participar y construir tu futuro</h1>
+          <p>Encuentra programas de apoyo, talleres, voluntariado, actividades recreativas y preparación académica en un solo lugar.</p>
+          <div class="hero-actions">
+            <a class="button button-accent" href="#actividades">Ver actividades</a>
+            <a class="button button-secondary" href="#programas">Conocer programas</a>
+          </div>
+          <div class="hero-trust" aria-label="Características del sitio">
+            <span>✓ Inscripción simple</span>
+            <span>✓ Cupos en tiempo real</span>
+            <span>✓ Soporte disponible</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-image-wrap">
+            <img src="assets/banner.png" alt="Mural comunitario de Santiago" width="495" height="502">
+          </div>
+          <div class="floating-card floating-card-top">
+            <strong id="hero-open-spots">120+</strong>
+            <span>Cupos disponibles</span>
+          </div>
+          <div class="floating-card floating-card-bottom">
+            <strong id="hero-activity-count">8</strong>
+            <span>Actividades activas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Resumen del proyecto">
+      <div class="container stats-grid">
+        <article><strong>3</strong><span>Programas institucionales</span></article>
+        <article><strong>100%</strong><span>Adaptado a celulares</span></article>
+        <article><strong>24/7</strong><span>Información disponible</span></article>
+        <article><strong id="stats-users">0</strong><span>Usuarios registrados</span></article>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="programas">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Programas institucionales</span>
+          <h2>Apoyo integral para distintas necesidades</h2>
+          <p>Conoce iniciativas de prevención, acompañamiento académico y desarrollo personal.</p>
+        </div>
+        <div class="cards-3">
+          <article class="feature-card reveal">
+            <span class="feature-icon bg-teal" aria-hidden="true">🤝</span>
+            <h3>Programa Lazos</h3>
+            <p>Prevención e intervención temprana para jóvenes y familias que necesitan orientación y acompañamiento oportuno.</p>
+            <ul class="check-list">
+              <li>Orientación familiar</li>
+              <li>Detección temprana</li>
+              <li>Derivación a redes de apoyo</li>
+            </ul>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon bg-orange" aria-hidden="true">🛡️</span>
+            <h3>Programa SENDA</h3>
+            <p>Prevención del consumo de alcohol y otras drogas mediante educación, autocuidado y participación comunitaria.</p>
+            <ul class="check-list">
+              <li>Talleres preventivos</li>
+              <li>Información confiable</li>
+              <li>Orientación y apoyo</li>
+            </ul>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon bg-blue" aria-hidden="true">🎓</span>
+            <h3>Programa Educere</h3>
+            <p>Acompañamiento para fortalecer el rendimiento académico, la orientación educativa y el desarrollo personal.</p>
+            <ul class="check-list">
+              <li>Apoyo académico</li>
+              <li>Orientación vocacional</li>
+              <li>Desarrollo formativo</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="actividades">
+      <div class="container">
+        <div class="section-heading heading-with-action reveal">
+          <div>
+            <span class="eyebrow">Inscripciones abiertas</span>
+            <h2>Actividades y talleres</h2>
+            <p>Revisa fechas, ubicación y cupos disponibles antes de inscribirte.</p>
+          </div>
+          <div class="filter-group" id="activity-filters" aria-label="Filtrar actividades">
+            <button class="filter-button active" data-filter="todas" type="button">Todas</button>
+            <button class="filter-button" data-filter="formacion" type="button">Formación</button>
+            <button class="filter-button" data-filter="recreacion" type="button">Recreación</button>
+            <button class="filter-button" data-filter="voluntariado" type="button">Voluntariado</button>
+            <button class="filter-button" data-filter="preuniversitario" type="button">Preu</button>
+          </div>
+        </div>
+        <div class="activity-grid" id="activity-grid" aria-live="polite"></div>
+        <div class="empty-state hidden" id="activity-empty">
+          <span aria-hidden="true">📅</span>
+          <h3>No hay actividades en esta categoría</h3>
+          <p>Prueba con otro filtro.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-gradient" id="voluntariado">
+      <div class="container split-layout">
+        <div class="split-content reveal">
+          <span class="eyebrow light">Voluntariado Santo Tomás</span>
+          <h2>Transforma tu comunidad con acciones concretas</h2>
+          <p>Participa en actividades solidarias, apoyo comunitario, operativos ambientales y acompañamiento a organizaciones locales.</p>
+          <div class="info-grid">
+            <div><span aria-hidden="true">📍</span><strong>Ubicación</strong><small>Sedes y espacios comunitarios</small></div>
+            <div><span aria-hidden="true">🗓️</span><strong>Fechas</strong><small>Actividades durante el semestre</small></div>
+            <div><span aria-hidden="true">👥</span><strong>Cupos</strong><small>Limitados por actividad</small></div>
+            <div><span aria-hidden="true">📄</span><strong>Inscripción</strong><small>En línea y con confirmación</small></div>
+          </div>
+          <a class="button button-light" href="#actividades" data-set-filter="voluntariado">Buscar voluntariados</a>
+        </div>
+        <div class="photo-card reveal">
+          <img src="https://images.unsplash.com/photo-1758599667718-684569efe224?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000" alt="Jóvenes realizando una jornada de limpieza ambiental" loading="lazy">
+          <div class="photo-label">Próxima jornada comunitaria</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="preuniversitario">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Preuniversitario</span>
+          <h2>Prepárate para tus próximos desafíos académicos</h2>
+          <p>Módulos de reforzamiento con fechas, cupos e inscripción en línea.</p>
+        </div>
+        <div class="subject-grid">
+          <article class="subject-card reveal"><span>📚</span><h3>Competencia Lectora</h3><p>Comprensión, análisis de textos y estrategias de respuesta.</p></article>
+          <article class="subject-card reveal"><span>📐</span><h3>Matemática M1</h3><p>Números, álgebra, geometría, probabilidad y resolución de problemas.</p></article>
+          <article class="subject-card reveal"><span>🌎</span><h3>Ciencias Sociales</h3><p>Historia, formación ciudadana, territorio y análisis de fuentes.</p></article>
+        </div>
+        <div class="center-action reveal">
+          <a class="button button-primary" href="#actividades" data-set-filter="preuniversitario">Ver cursos disponibles</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="novedades">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Actualidad</span>
+          <h2>Noticias y novedades</h2>
+          <p>Información relevante sobre programas, convocatorias y actividades.</p>
+        </div>
+        <div class="news-grid" id="news-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="galeria">
+      <div class="container">
+        <div class="section-heading heading-with-action reveal">
+          <div>
+            <span class="eyebrow">Galería</span>
+            <h2>Experiencias que dejan huella</h2>
+            <p>Explora fotografías por categoría y amplíalas con un clic.</p>
+          </div>
+          <div class="filter-group" id="gallery-filters" aria-label="Filtrar galería">
+            <button class="filter-button active" data-gallery-filter="todas" type="button">Todas</button>
+            <button class="filter-button" data-gallery-filter="voluntariado" type="button">Voluntariado</button>
+            <button class="filter-button" data-gallery-filter="educacion" type="button">Educación</button>
+            <button class="filter-button" data-gallery-filter="recreacion" type="button">Recreación</button>
+            <button class="filter-button" data-gallery-filter="cultura" type="button">Cultura</button>
+          </div>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="soporte">
+      <div class="container support-grid">
+        <div class="reveal">
+          <span class="eyebrow">Ayuda y orientación</span>
+          <h2>Preguntas frecuentes</h2>
+          <p class="section-intro">Resuelve dudas comunes sobre inscripciones, cupos y acceso.</p>
+          <div class="faq-list" id="faq-list">
+            <article class="faq-item">
+              <button type="button" aria-expanded="false"><span>¿Cómo me inscribo en una actividad?</span><span>+</span></button>
+              <div class="faq-answer"><p>Crea una cuenta o inicia sesión, selecciona una actividad con cupos y completa el formulario. El sistema mostrará una confirmación inmediata.</p></div>
+            </article>
+            <article class="faq-item">
+              <button type="button" aria-expanded="false"><span>¿Qué ocurre cuando se agotan los cupos?</span><span>+</span></button>
+              <div class="faq-answer"><p>El botón de inscripción se bloquea automáticamente y la actividad muestra el estado “Cupos agotados”.</p></div>
+            </article>
+            <article class="faq-item">
+              <button type="button" aria-expanded="false"><span>¿Puedo inscribirme dos veces?</span><span>+</span></button>
+              <div class="faq-answer"><p>No. El sistema evita inscripciones duplicadas utilizando el correo electrónico y la actividad seleccionada.</p></div>
+            </article>
+            <article class="faq-item">
+              <button type="button" aria-expanded="false"><span>¿Cómo recupero mi acceso?</span><span>+</span></button>
+              <div class="faq-answer"><p>En la ventana de ingreso selecciona “Recuperar acceso”. En esta versión demostrativa podrás establecer una nueva contraseña para una cuenta existente.</p></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <span class="eyebrow">Formulario de contacto</span>
+          <h2>¿Necesitas ayuda?</h2>
+          <p>Envíanos tu consulta y quedará registrada para revisión del equipo administrador.</p>
+          <form id="contact-form" class="stack-form" novalidate>
+            <div class="form-row">
+              <label>Nombre completo<input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="80"></label>
+              <label>Correo electrónico<input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="120"></label>
+            </div>
+            <label>Motivo
+              <select id="contact-subject" name="subject" required>
+                <option value="">Selecciona una opción</option>
+                <option>Inscripción</option>
+                <option>Recuperación de acceso</option>
+                <option>Programas</option>
+                <option>Problema técnico</option>
+                <option>Otra consulta</option>
+              </select>
+            </label>
+            <label>Mensaje<textarea id="contact-message" name="message" rows="5" required maxlength="800"></textarea></label>
+            <label class="checkbox-label"><input id="contact-consent" type="checkbox" required> Autorizo el uso de estos datos para responder mi consulta.</label>
+            <button class="button button-primary" type="submit">Enviar consulta</button>
+            <p class="form-status" id="contact-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact section-dark">
+      <div class="container survey-box reveal">
+        <div>
+          <span class="eyebrow light">Evaluación del servicio</span>
+          <h2>¿Qué te pareció la experiencia?</h2>
+          <p>Tu respuesta ayuda a mejorar el sitio y sus contenidos.</p>
+        </div>
+        <form id="survey-form" class="survey-form">
+          <label>Calificación
+            <select id="survey-rating" required>
+              <option value="">Selecciona</option>
+              <option value="5">5 - Excelente</option>
+              <option value="4">4 - Buena</option>
+              <option value="3">3 - Regular</option>
+              <option value="2">2 - Deficiente</option>
+              <option value="1">1 - Muy deficiente</option>
+            </select>
+          </label>
+          <label>Comentario<input id="survey-comment" type="text" maxlength="250" placeholder="Comentario opcional"></label>
+          <button class="button button-accent" type="submit">Enviar</button>
+          <span class="form-status" id="survey-status" role="status"></span>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand brand-light" href="#inicio"><span class="brand-mark">AJ</span><span>Apoyo Joven</span></a>
+        <p>Plataforma demostrativa para centralizar actividades, programas e inscripciones juveniles.</p>
+      </div>
+      <div>
+        <h3>Accesos</h3>
+        <a href="#actividades">Actividades</a>
+        <a href="#programas">Programas</a>
+        <a href="#galeria">Galería</a>
+      </div>
+      <div>
+        <h3>Soporte</h3>
+        <a href="#soporte">Preguntas frecuentes</a>
+        <a href="#soporte">Formulario de contacto</a>
+        <button class="footer-link" id="footer-auth-button" type="button">Ingresar</button>
+      </div>
+      <div>
+        <h3>Estado</h3>
+        <span class="status-chip"><i></i> Sitio operativo</span>
+        <small>Versión de evaluación académica</small>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="current-year"></span> Apoyo Joven</span>
+      <span>Diseño responsive · HTML · CSS · JavaScript</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <div class="modal-backdrop" data-close-modal="auth-modal"></div>
+    <div class="modal-panel auth-panel" role="document">
+      <button class="modal-close" data-close-modal="auth-modal" type="button" aria-label="Cerrar">×</button>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" data-auth-view="login" type="button">Ingresar</button>
+        <button class="auth-tab" data-auth-view="register" type="button">Crear cuenta</button>
+        <button class="auth-tab" data-auth-view="recover" type="button">Recuperar</button>
+      </div>
+
+      <section class="auth-view active" id="auth-login" data-auth-panel="login">
+        <span class="eyebrow">Bienvenido</span>
+        <h2 id="auth-title">Inicia sesión</h2>
+        <p>Accede a tus inscripciones y herramientas disponibles.</p>
+        <form id="login-form" class="stack-form" novalidate>
+          <label>Correo electrónico<input id="login-email" type="email" autocomplete="email" required></label>
+          <label>Contraseña<input id="login-password" type="password" autocomplete="current-password" required minlength="6"></label>
+          <button class="button button-primary" type="submit">Ingresar</button>
+          <p class="form-status" id="login-status" role="status"></p>
+        </form>
+        <div class="demo-credentials">
+          <strong>Acceso administrador de demostración</strong>
+          <span>admin@apoyojoven.cl</span>
+          <span>Admin123!</span>
+        </div>
+      </section>
+
+      <section class="auth-view" id="auth-register" data-auth-panel="register">
+        <span class="eyebrow">Nueva cuenta</span>
+        <h2>Regístrate</h2>
+        <form id="register-form" class="stack-form" novalidate>
+          <div class="form-row">
+            <label>Nombre<input id="register-name" type="text" autocomplete="given-name" required maxlength="50"></label>
+            <label>Apellido<input id="register-lastname" type="text" autocomplete="family-name" required maxlength="50"></label>
+          </div>
+          <label>Correo electrónico<input id="register-email" type="email" autocomplete="email" required maxlength="120"></label>
+          <div class="form-row">
+            <label>Teléfono<input id="register-phone" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678" maxlength="20"></label>
+            <label>Fecha de nacimiento<input id="register-birthdate" type="date"></label>
+          </div>
+          <label>Contraseña<input id="register-password" type="password" autocomplete="new-password" required minlength="8" placeholder="Mínimo 8 caracteres"></label>
+          <label class="checkbox-label"><input id="register-terms" type="checkbox" required> Acepto las condiciones de uso de esta demostración.</label>
+          <button class="button button-secondary" type="submit">Crear cuenta</button>
+          <p class="form-status" id="register-status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="auth-view" id="auth-recover" data-auth-panel="recover">
+        <span class="eyebrow">Recuperar acceso</span>
+        <h2>Define una nueva contraseña</h2>
+        <p>Función demostrativa local. En producción se enviaría un enlace seguro al correo.</p>
+        <form id="recover-form" class="stack-form" novalidate>
+          <label>Correo registrado<input id="recover-email" type="email" required></label>
+          <label>Nueva contraseña<input id="recover-password" type="password" required minlength="8"></label>
+          <button class="button button-primary" type="submit">Actualizar contraseña</button>
+          <p class="form-status" id="recover-status" role="status"></p>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <div class="modal" id="registration-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="registration-title">
+    <div class="modal-backdrop" data-close-modal="registration-modal"></div>
+    <div class="modal-panel" role="document">
+      <button class="modal-close" data-close-modal="registration-modal" type="button" aria-label="Cerrar">×</button>
+      <span class="eyebrow">Inscripción</span>
+      <h2 id="registration-title">Actividad</h2>
+      <p id="registration-summary"></p>
+      <form id="registration-form" class="stack-form" novalidate>
+        <input id="registration-activity-id" type="hidden">
+        <div class="form-row">
+          <label>Nombre<input id="registration-name" type="text" required maxlength="100"></label>
+          <label>Correo<input id="registration-email" type="email" required maxlength="120"></label>
+        </div>
+        <label>Teléfono<input id="registration-phone" type="tel" maxlength="20"></label>
+        <label class="checkbox-label"><input id="registration-confirm" type="checkbox" required> Confirmo que los datos ingresados son correctos.</label>
+        <button class="button button-accent" type="submit">Confirmar inscripción</button>
+        <p class="form-status" id="registration-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal lightbox" id="lightbox-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <div class="modal-backdrop" data-close-modal="lightbox-modal"></div>
+    <div class="lightbox-panel">
+      <button class="modal-close light" data-close-modal="lightbox-modal" type="button" aria-label="Cerrar">×</button>
+      <img id="lightbox-image" src="" alt="">
+      <div><strong id="lightbox-title"></strong><span id="lightbox-category"></span></div>
+    </div>
+  </div>
+
+  <div class="modal admin-modal" id="admin-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <div class="modal-backdrop" data-close-modal="admin-modal"></div>
+    <div class="admin-panel" role="document">
+      <div class="admin-header">
+        <div><span class="eyebrow">Gestión de contenidos</span><h2 id="admin-title">Panel administrativo</h2></div>
+        <button class="modal-close static" data-close-modal="admin-modal" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <nav class="admin-tabs" id="admin-tabs" aria-label="Secciones del panel">
+        <button class="active" data-admin-view="dashboard" type="button">Resumen</button>
+        <button data-admin-view="activities" type="button">Actividades</button>
+        <button data-admin-view="news" type="button">Noticias</button>
+        <button data-admin-view="gallery" type="button">Galería</button>
+        <button data-admin-view="users" type="button" data-admin-only>Usuarios</button>
+        <button data-admin-view="support" type="button">Soporte</button>
+      </nav>
+      <div class="admin-content">
+        <section class="admin-view active" data-admin-panel="dashboard">
+          <div class="admin-kpis" id="admin-kpis"></div>
+          <div class="admin-actions-row">
+            <button class="button button-primary" id="export-data-button" type="button">Exportar datos JSON</button>
+            <button class="button button-danger" id="reset-data-button" type="button" data-admin-only>Restablecer demostración</button>
+          </div>
+          <div class="admin-note"><strong>Importante:</strong> esta entrega funciona con LocalStorage para poder publicarse en Netlify o GitHub Pages. La carpeta <code>database</code> incluye el modelo SQL recomendado para una versión con backend real.</div>
+        </section>
+
+        <section class="admin-view" data-admin-panel="activities">
+          <div class="admin-two-column">
+            <form id="activity-admin-form" class="admin-form stack-form" novalidate>
+              <h3>Crear o editar actividad</h3>
+              <input id="admin-activity-id" type="hidden">
+              <label>Nombre<input id="admin-activity-name" type="text" required maxlength="90"></label>
+              <div class="form-row">
+                <label>Categoría<select id="admin-activity-category" required><option value="formacion">Formación</option><option value="recreacion">Recreación</option><option value="voluntariado">Voluntariado</option><option value="preuniversitario">Preuniversitario</option></select></label>
+                <label>Cupos<input id="admin-activity-capacity" type="number" required min="1" max="500"></label>
+              </div>
+              <div class="form-row">
+                <label>Fecha<input id="admin-activity-date" type="date" required></label>
+                <label>Hora<input id="admin-activity-time" type="time" required></label>
+              </div>
+              <label>Lugar<input id="admin-activity-location" type="text" required maxlength="120"></label>
+              <label>Descripción<textarea id="admin-activity-description" rows="4" required maxlength="400"></textarea></label>
+              <label class="checkbox-label"><input id="admin-activity-active" type="checkbox" checked> Publicar actividad</label>
+              <div class="form-actions"><button class="button button-primary" type="submit">Guardar</button><button class="button button-ghost" id="activity-form-clear" type="button">Limpiar</button></div>
+              <p class="form-status" id="activity-admin-status" role="status"></p>
+            </form>
+            <div><h3>Actividades registradas</h3><div class="admin-list" id="admin-activity-list"></div></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-admin-panel="news">
+          <div class="admin-two-column">
+            <form id="news-admin-form" class="admin-form stack-form" novalidate>
+              <h3>Publicar noticia</h3>
+              <input id="admin-news-id" type="hidden">
+              <label>Título<input id="admin-news-title" type="text" required maxlength="100"></label>
+              <label>Fecha<input id="admin-news-date" type="date" required></label>
+              <label>Contenido<textarea id="admin-news-content" rows="5" required maxlength="600"></textarea></label>
+              <div class="form-actions"><button class="button button-primary" type="submit">Guardar</button><button class="button button-ghost" id="news-form-clear" type="button">Limpiar</button></div>
+              <p class="form-status" id="news-admin-status" role="status"></p>
+            </form>
+            <div><h3>Noticias publicadas</h3><div class="admin-list" id="admin-news-list"></div></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-admin-panel="gallery">
+          <div class="admin-two-column">
+            <form id="gallery-admin-form" class="admin-form stack-form" novalidate>
+              <h3>Agregar imagen</h3>
+              <input id="admin-gallery-id" type="hidden">
+              <label>Título<input id="admin-gallery-title" type="text" required maxlength="100"></label>
+              <label>Categoría<select id="admin-gallery-category" required><option value="voluntariado">Voluntariado</option><option value="educacion">Educación</option><option value="recreacion">Recreación</option><option value="cultura">Cultura</option></select></label>
+              <label>URL de imagen<input id="admin-gallery-url" type="url" placeholder="https://..."></label>
+              <label>O cargar archivo<input id="admin-gallery-file" type="file" accept="image/png,image/jpeg,image/webp"></label>
+              <small>Máximo recomendado: 1,5 MB. Las imágenes cargadas se guardan en el navegador.</small>
+              <div class="form-actions"><button class="button button-primary" type="submit">Guardar</button><button class="button button-ghost" id="gallery-form-clear" type="button">Limpiar</button></div>
+              <p class="form-status" id="gallery-admin-status" role="status"></p>
+            </form>
+            <div><h3>Imágenes registradas</h3><div class="admin-list" id="admin-gallery-list"></div></div>
+          </div>
+        </section>
+
+        <section class="admin-view" data-admin-panel="users">
+          <h3>Gestión de usuarios</h3>
+          <p>El administrador puede modificar roles. No es posible eliminar la cuenta administradora principal.</p>
+          <div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Registro</th><th>Acción</th></tr></thead><tbody id="admin-users-table"></tbody></table></div>
+        </section>
+
+        <section class="admin-view" data-admin-panel="support">
+          <div class="admin-two-column">
+            <div><h3>Consultas recibidas</h3><div class="admin-list" id="admin-support-list"></div></div>
+            <div><h3>Encuestas</h3><div class="admin-list" id="admin-survey-list"></div></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Abrir ayuda rápida" aria-expanded="false">💬</button>
+  <aside class="chat-widget" id="chat-widget" aria-hidden="true" aria-label="Ayuda rápida">
+    <div class="chat-header"><div><strong>Ayuda rápida</strong><span>Orientación automática</span></div><button id="chat-close" type="button" aria-label="Cerrar">×</button></div>
+    <div class="chat-messages" id="chat-messages"><div class="chat-message bot">Hola. Pregúntame por inscripciones, cupos, programas o recuperación de acceso.</div></div>
+    <form class="chat-form" id="chat-form"><input id="chat-input" type="text" maxlength="180" placeholder="Escribe tu consulta..." aria-label="Mensaje"><button type="submit">Enviar</button></form>
+  </aside>
+
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+</body>
+</html>

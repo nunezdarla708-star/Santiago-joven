@@ -1,0 +1,39 @@
+# Configuración de despliegue para Netlify
+# Sitio estático — no requiere comando de compilación
+
+[build]
+  publish = "."
+
+# ── Cabeceras de seguridad para todas las páginas ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options    = "nosniff"
+    X-Frame-Options           = "SAMEORIGIN"
+    X-XSS-Protection          = "1; mode=block"
+    Referrer-Policy           = "strict-origin-when-cross-origin"
+    Permissions-Policy        = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy   = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://*.supabase.co; font-src 'self';"
+
+# ── Caché para assets estáticos (1 semana) ──
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, immutable"
+
+# ── Caché para CSS y JS (1 día, revalidar) ──
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+# ── Redirigir 404 al index (SPA-friendly) ──
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
