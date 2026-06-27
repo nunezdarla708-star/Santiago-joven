@@ -122,6 +122,7 @@ El servidor queda disponible en `http://localhost:3000`.
 
 | Documento | Contenido |
 |---|---|
+| `docs/Guia_Actualizacion_Contenidos.md` | Cómo Santiago Joven actualiza contenidos sin tocar el código |
 | `docs/Informe_Proyecto.md` | Informe completo con descripción de programas y arquitectura |
 | `docs/Documentacion_Tecnica.md` | Módulos JavaScript, validaciones y recomendaciones productivas |
 | `docs/Stack_Tecnologico.md` | Tecnologías utilizadas y justificación de cada elección |

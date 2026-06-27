@@ -188,6 +188,9 @@
     renderAll();
   }
 
+  // ── Semilla de datos iniciales ──────────────────────────────
+  // Se ejecuta solo la primera vez (o cuando se restablece la demo).
+  // Carga usuarios, actividades, galería y noticias de ejemplo.
   function seedStorage(force = false) {
     if (force || !localStorage.getItem(STORAGE.users)) setData(STORAGE.users, clone(seedData.users));
     if (force || !localStorage.getItem(STORAGE.activities)) setData(STORAGE.activities, clone(seedData.activities));
@@ -224,6 +227,8 @@
     }
   }
 
+  // ── Hash simple para contraseñas de demostración ────────────
+  // FNV-1a de 32 bits. No usar en producción — usar bcrypt o Argon2.
   function hashText(text) {
     let hash = 2166136261;
     const normalized = String(text || '');
@@ -323,6 +328,9 @@
     document.getElementById('hero-open-spots').textContent = totalAvailable;
   }
 
+  // ── Control de cupos ─────────────────────────────────────────
+  // Suma los inscritos base (datos iniciales) + nuevas inscripciones
+  // guardadas en LocalStorage para esa actividad.
   function enrolledCount(activity, registrations = getData(STORAGE.registrations)) {
     return Number(activity.baseEnrolled || 0) + registrations.filter(item => item.activityId === activity.id).length;
   }

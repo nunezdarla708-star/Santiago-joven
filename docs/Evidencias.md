@@ -71,7 +71,7 @@ Completar esta tabla al realizar las pruebas antes de la entrega:
 
 ## Repositorio GitHub
 
-- URL del repositorio: `https://github.com/[usuario]/apoyo-joven`
+- URL del repositorio: `https://github.com/nunezdarla708-star/Santiago-joven`
 - Rama principal: `main`
 - Archivos incluidos: `index.html`, `styles.css`, `script.js`, `assets/`, `database/`, `docs/`, `netlify.toml`, `README.md`
 
