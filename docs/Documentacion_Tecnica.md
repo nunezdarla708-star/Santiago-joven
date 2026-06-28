@@ -11,7 +11,7 @@
 ## 2. Estructura
 
 ```text
-ApoyoJoven/
+SantiagoJoven/
 ├── index.html
 ├── styles.css
 ├── script.js

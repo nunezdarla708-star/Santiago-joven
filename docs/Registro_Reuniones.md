@@ -14,9 +14,9 @@ En esta primera reunión revisamos los requerimientos de Santiago Joven y lo que
 También elegimos las tecnologías: HTML, CSS y JavaScript para el frontend, Node.js con Express para el backend, y SQL Server para la base de datos. Elegimos eso porque era lo que más habíamos visto en clases y nos sentíamos más cómodos.
 
 **Responsabilidades que quedaron definidas:**
-- Integrante 1: estructura HTML y estilos CSS
-- Integrante 2: lógica JavaScript y funcionalidades
-- Integrante 3: base de datos y backend
+- Integrante 1(Josselyn Sanchez): estructura HTML y estilos CSS
+- Integrante 2(Katline Lauture): lógica JavaScript y funcionalidades
+- Integrante 3(Darla Núñez): base de datos y backend
 
 **Para la próxima reunión:** tener el esqueleto del sitio funcionando y el borrador de las tablas de la base de datos.
 

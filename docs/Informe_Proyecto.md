@@ -4,7 +4,7 @@
 
 Este proyecto nació a partir de la necesidad de Santiago Joven de tener una plataforma web donde pudieran publicar sus actividades, talleres y programas de forma ordenada y accesible para los jóvenes. Antes de esto, no tenían una forma centralizada de mostrar lo que ofrecen ni de recibir inscripciones de manera organizada.
 
-Nosotros, como equipo de tres integrantes del curso Desarrollo Web I, decidimos construir una solución real que les sirva: un sitio web donde cualquier persona pueda ver los programas disponibles, inscribirse en actividades y contactar al equipo. Y desde el lado administrativo, que el personal de Santiago Joven pueda actualizar todo eso sin necesidad de saber programar.
+Nosotras, como equipo de tres integrantes del curso Desarrollo Web I, decidimos construir una solución real que les sirva: un sitio web donde cualquier persona pueda ver los programas disponibles, inscribirse en actividades y contactar al equipo. Y desde el lado administrativo, que el personal de Santiago Joven pueda actualizar todo eso sin necesidad de saber programar.
 
 ---
 
@@ -45,13 +45,13 @@ Apoya a estudiantes que necesitan reforzamiento académico o que están buscando
 
 ### Diseño y visual
 
-El integrante 1 se encargó de todo lo visual. Construyó la estructura HTML del sitio con semántica correcta (usando etiquetas como `header`, `section`, `article`, `footer`), diseñó los estilos en CSS usando variables para los colores, y se aseguró de que el sitio se adaptara a distintos tamaños de pantalla.
+Josselyn se encargó de todo lo visual. Construyó la estructura HTML del sitio con semántica correcta (usando etiquetas como `header`, `section`, `article`, `footer`), diseñó los estilos en CSS usando variables para los colores, y se aseguró de que el sitio se adaptara a distintos tamaños de pantalla.
 
 El resultado fue un sitio limpio, moderno y que funciona bien desde un celular de 360px hasta un monitor de 1920px. El menú en celular se convierte en un botón hamburguesa, las tarjetas de actividades se apilan, los formularios se reorganizan solos.
 
 ### Funcionalidades
 
-El integrante 2 programó toda la lógica del sitio en JavaScript. Lo más destacado:
+Katline programó toda la lógica del sitio en JavaScript. Lo más destacado:
 
 - Sistema de registro e inicio de sesión con validaciones reales (el correo no puede duplicarse, la contraseña necesita letras y números, mínimo 8 caracteres)
 - Inscripciones a actividades con control de cupos: cuando se llena el límite, el botón se bloquea y aparece "Cupos agotados"
@@ -61,7 +61,7 @@ El integrante 2 programó toda la lógica del sitio en JavaScript. Lo más desta
 
 ### Base de datos y backend
 
-El integrante 3 diseñó el modelo de base de datos en SQL Server y programó el backend con Node.js. Se crearon 10 tablas relacionadas: usuarios, actividades, inscripciones, noticias, galería, encuestas, respuestas, mensajes de soporte y recuperación de acceso.
+Darla diseñó el modelo de base de datos en SQL Server y programó el backend con Node.js. Se crearon 10 tablas relacionadas: usuarios, actividades, inscripciones, noticias, galería, encuestas, respuestas, mensajes de soporte y recuperación de acceso.
 
 El backend expone una API REST con 20 rutas. Cuando alguien se inscribe en el sitio, el dato viaja al servidor y se guarda en SQL Server usando una transacción para evitar que dos personas tomen el último cupo al mismo tiempo.
 

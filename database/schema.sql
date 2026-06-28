@@ -1,5 +1,5 @@
 -- ============================================================
--- APOYO JOVEN — Script T-SQL para SQL Server 2016 o superior
+-- SANTIAGO JOVEN 
 -- Ejecutar completo en SQL Server Management Studio (SSMS)
 -- ============================================================
 

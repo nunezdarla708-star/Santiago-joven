@@ -1,4 +1,4 @@
-# Stack Tecnológico y Justificación — Apoyo Joven
+# Stack Tecnológico y Justificación — Santiago Joven
 
 ## Tecnologías utilizadas
 
