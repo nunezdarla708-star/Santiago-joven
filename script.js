@@ -63,10 +63,10 @@
         id: 'usr-admin',
         name: 'Administración',
         lastname: 'Santiago Joven',
-        email: 'admin@santiagojoven.cl',
+        email: 'admin@munistgo.cl',
         phone: '',
         birthdate: '',
-        passwordHash: hashText('Admin123!'),
+        passwordHash: hashText('Santiago2026!'),
         role: 'admin',
         createdAt: '2026-06-01T12:00:00.000Z'
       },
@@ -74,10 +74,10 @@
         id: 'usr-editor',
         name: 'Editor',
         lastname: 'Contenidos',
-        email: 'editor@santiagojoven.cl',
+        email: 'editor@munistgo.cl',
         phone: '',
         birthdate: '',
-        passwordHash: hashText('Editor123!'),
+        passwordHash: hashText('Santiago2026!'),
         role: 'editor',
         createdAt: '2026-06-02T12:00:00.000Z'
       }

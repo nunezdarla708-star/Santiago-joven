@@ -44,8 +44,8 @@ Desde el **Panel Administrativo** del sitio, un usuario con rol Administrador o 
 3. Clic en **Guardar**
 4. La actividad aparece inmediatamente en el sitio público
 
-Para **editar** una actividad existente: clic en el lápiz ✏️ junto a la actividad en el listado.
-Para **desactivar**: clic en el botón eliminar 🗑️ (la actividad se oculta pero no se borra).
+Para **editar** una actividad existente: clic en el lápiz junto a la actividad en el listado.
+Para **desactivar**: clic en el botón eliminar (la actividad se oculta pero no se borra).
 
 ---
 
@@ -99,8 +99,8 @@ Para **desactivar**: clic en el botón eliminar 🗑️ (la actividad se oculta 
 
 | Rol | Correo | Contraseña |
 |---|---|---|
-| Administrador | admin@apoyojoven.cl | Admin123! |
-| Editor | editor@apoyojoven.cl | Editor123! |
+| Administrador | admin@munistgo.cl | Santiago2026! |
+| Editor | editor@munistgo.cl | Santiago2026! |
 
 > **Importante:** cambiar estas contraseñas antes del uso real en producción.
 

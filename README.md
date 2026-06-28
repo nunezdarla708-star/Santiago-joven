@@ -18,10 +18,10 @@ Luego abre `http://localhost:5500`.
 
 ## Acceso de demostración
 
-- Administrador: `admin@santiagojoven.cl`
-- Contraseña: `Admin123!`
-- Editor: `editor@santiagojoven.cl`
-- Contraseña: `Editor123!`
+- Administrador: `admin@munistgo.cl`
+- Contraseña: `Santiago2026!`
+- Editor: `editor@munistgo.cl`
+- Contraseña: `Santiago2026!`
 
 ## Funcionalidades implementadas
 
