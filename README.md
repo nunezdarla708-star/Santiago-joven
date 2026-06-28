@@ -18,9 +18,9 @@ Luego abre `http://localhost:5500`.
 
 ## Acceso de demostración
 
-- Administrador: `admin@apoyojoven.cl`
+- Administrador: `admin@santiagojoven.cl`
 - Contraseña: `Admin123!`
-- Editor: `editor@apoyojoven.cl`
+- Editor: `editor@santiagojoven.cl`
 - Contraseña: `Editor123!`
 
 ## Funcionalidades implementadas

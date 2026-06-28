@@ -1,131 +1,85 @@
-# Registro de Reuniones y Seguimiento — Apoyo Joven
+# Registro de reuniones del equipo
 
-## Metodología de trabajo
-
-El equipo adoptó una metodología de trabajo iterativa e incremental inspirada en Scrum, organizada en sprints semanales. Cada semana se definieron tareas específicas por integrante, se revisó el avance de la semana anterior y se acordaron los compromisos para la siguiente.
-
-Las reuniones se realizaron de forma presencial y por videollamada, con un mínimo de una reunión semanal de sincronización y sesiones de trabajo colaborativo según necesidad.
+Durante el desarrollo del proyecto nos juntamos semanalmente para revisar el avance, repartir tareas y resolver los problemas que iban apareciendo. Acá están las notas de cada reunión.
 
 ---
 
-## Semana 1 — Planificación y diseño inicial
+## Semana 1 — Arranque del proyecto
 
-**Fecha:** Primera semana del proyecto
 **Modalidad:** Presencial
 **Participantes:** Los tres integrantes
 
-**Temas tratados:**
-- Revisión de los requerimientos del socio comunitario Santiago Joven
-- Definición de la estructura del sitio (secciones, navegación, contenidos)
-- Distribución de roles y responsabilidades por integrante
-- Selección del stack tecnológico: HTML, CSS, JavaScript, SQL Server, Node.js, Netlify
-- Definición de la paleta de colores y estilo visual
+En esta primera reunión revisamos los requerimientos de Santiago Joven y lo que pedía la evaluación. Decidimos qué secciones iba a tener el sitio y cómo nos íbamos a repartir el trabajo.
 
-**Acuerdos:**
-- Integrante 1 comienza con maquetación HTML y estilos base
-- Integrante 2 define estructura JavaScript y sistema de datos
-- Integrante 3 diseña el modelo de base de datos
-- Próxima reunión: revisar avance del esqueleto del sitio
+También elegimos las tecnologías: HTML, CSS y JavaScript para el frontend, Node.js con Express para el backend, y SQL Server para la base de datos. Elegimos eso porque era lo que más habíamos visto en clases y nos sentíamos más cómodos.
 
-**Dificultades:** Ninguna en esta etapa.
+**Responsabilidades que quedaron definidas:**
+- Integrante 1: estructura HTML y estilos CSS
+- Integrante 2: lógica JavaScript y funcionalidades
+- Integrante 3: base de datos y backend
+
+**Para la próxima reunión:** tener el esqueleto del sitio funcionando y el borrador de las tablas de la base de datos.
 
 ---
 
-## Semana 2 — Desarrollo del esqueleto y estructura base
+## Semana 2 — Revisión del esqueleto
 
-**Fecha:** Segunda semana del proyecto
 **Modalidad:** Videollamada
 **Participantes:** Los tres integrantes
 
-**Temas tratados:**
-- Revisión del avance de maquetación HTML (Integrante 1)
-- Revisión del sistema de LocalStorage y seed data (Integrante 2)
-- Revisión del borrador del schema SQL (Integrante 3)
-- Decisión de usar LocalStorage para la versión de demostración y SQL Server para la versión productiva
+Revisamos lo que llevaba cada uno. El integrante 1 ya tenía el header, el nav y las primeras secciones armadas. El integrante 2 había definido la estructura de datos en LocalStorage. El integrante 3 tenía el borrador del modelo relacional.
 
-**Acuerdos:**
-- Integrante 1: completar secciones Programas, Actividades y Voluntariado
-- Integrante 2: implementar sistema de usuarios y autenticación
-- Integrante 3: completar modelo relacional y agregar tablas de encuestas y soporte
-- Se acordó usar Netlify para el despliegue estático
+Una decisión importante que tomamos en esta reunión fue usar LocalStorage para la versión de demostración en Netlify, y SQL Server para la versión con backend real. Así el sitio puede publicarse sin servidor y también conectarse a la base de datos cuando está disponible.
 
-**Dificultades:** Compatibilidad de tipos de datos entre MySQL y SQL Server. Se decidió migrar a T-SQL puro.
+**Dificultades:** ninguna mayor por ahora.
+
+**Para la próxima:** completar las secciones principales y arrancar con el sistema de login.
 
 ---
 
-## Semana 3 — Desarrollo de funcionalidades principales
+## Semana 3 — Funcionalidades principales
 
-**Fecha:** Tercera semana del proyecto
 **Modalidad:** Presencial
 **Participantes:** Los tres integrantes
 
-**Temas tratados:**
-- Revisión del sistema de inscripción con control de cupos (Integrante 2)
-- Revisión del diseño responsive en distintos dispositivos (Integrante 1)
-- Avance del backend Node.js con Express (Integrante 3)
-- Prueba de conexión entre el frontend y el backend
+Esta fue la semana más intensa. El integrante 2 terminó el sistema de login, registro y las inscripciones con control de cupos. El integrante 1 trabajó en el responsive para que se viera bien en celular. El integrante 3 avanzó con las rutas del backend.
 
-**Acuerdos:**
-- Integrante 1: corregir visualización en resoluciones tablet y celular pequeño
-- Integrante 2: implementar panel administrativo y sistema de roles
-- Integrante 3: completar rutas de la API REST para inscripciones, noticias y galería
-- Documentar pruebas funcionales
+Cuando intentamos conectar el frontend con el backend nos dimos cuenta de un problema: los IDs de las actividades en el sitio eran textos como "act-excel", pero en SQL Server son números. Tuvimos que crear un mapa en el backend que tradujera esos IDs al nombre de la actividad para buscarla en la base de datos.
 
-**Dificultades:** El backend usaba IDs de texto del frontend ("act-excel") incompatibles con BIGINT de SQL Server. Se resolvió con un mapa de nombres en la ruta de inscripciones.
+**Dificultades:** incompatibilidad de IDs entre el frontend y SQL Server. Se resolvió con un mapa de nombres en la ruta de inscripciones.
+
+**Para la próxima:** probar la conexión completa y arreglar lo que no funcione.
 
 ---
 
-## Semana 4 — Integración, pruebas y correcciones
+## Semana 4 — Integración y pruebas
 
-**Fecha:** Cuarta semana del proyecto
-**Modalidad:** Presencial y videollamada
+**Modalidad:** Presencial + videollamada
 **Participantes:** Los tres integrantes
 
-**Temas tratados:**
-- Integración del frontend con el backend: el `script.js` ahora envía datos a SQL Server mediante `fetch`
-- Verificación de inscripciones en SSMS
-- Corrección del schema SQL de MySQL a T-SQL (IDENTITY, BIT, CHECK en lugar de ENUM)
-- Prueba del sitio en dispositivos móviles
-- Configuración de CORS para permitir peticiones desde `127.0.0.1:5500`
+Esta semana fue de arreglar cosas. El schema SQL que teníamos estaba escrito para MySQL y SQL Server no lo aceptaba. Tuvimos que reescribir todo el script usando T-SQL: cambiar `AUTO_INCREMENT` por `IDENTITY`, `BOOLEAN` por `BIT`, los `ENUM` por `CHECK`, y los `TIMESTAMP ON UPDATE` por triggers.
 
-**Acuerdos:**
-- Integrante 1: verificar diseño final y correcciones de accesibilidad
-- Integrante 2: corregir advertencia de aria-hidden en modales
-- Integrante 3: publicar en Netlify y actualizar documentación con URL real
-- Preparar presentación final
+También tuvimos problemas con el CORS: el navegador bloqueaba las peticiones porque el sitio abría desde `127.0.0.1` y no desde `localhost`. Se resolvió agregando la IP al listado de orígenes permitidos en el backend.
 
-**Dificultades:** El firewall de Windows bloqueaba el acceso desde dispositivos móviles en red local. Se resolvió publicando en Netlify para acceso desde cualquier dispositivo.
+Al final de la semana las inscripciones llegaban a SQL Server y se podía verificar con un `SELECT * FROM inscripciones` en SSMS.
+
+**Dificultades:** schema SQL incompatible con SQL Server, configuración de CORS.
+
+**Para la próxima:** publicar en Netlify y preparar la documentación.
 
 ---
 
-## Semana 5 — Cierre, despliegue y entrega final
+## Semana 5 — Cierre y entrega
 
-**Fecha:** Semana de entrega
 **Modalidad:** Presencial
 **Participantes:** Los tres integrantes
 
-**Temas tratados:**
-- Revisión final de todos los módulos del sitio
-- Verificación del sitio en Netlify desde distintos dispositivos
-- Revisión de la documentación completa
-- Preparación de la presentación ante el docente y Santiago Joven
-- Distribución de partes de la exposición por integrante
+Revisamos todo el sitio de arriba a abajo. Probamos cada funcionalidad: login, registro, inscripciones, galería, soporte, panel de administrador. Anotamos los resultados en la tabla de pruebas funcionales.
 
-**Acuerdos:**
-- Cada integrante expone su área de trabajo
-- Se prepara demo en vivo con el sitio publicado
-- Entrega del repositorio y carpeta de evidencias
+El integrante 3 subió el sitio a Netlify arrastrando la carpeta, y quedó publicado en pocos minutos. También inicializamos el repositorio en GitHub y subimos todos los archivos.
 
-**Resultado:** Proyecto entregado con todas las funcionalidades operativas, documentación completa y sitio desplegado en Netlify.
+El integrante 1 hizo las pruebas responsive en las DevTools del navegador con distintas resoluciones. Todo funcionaba bien.
 
----
+Nos repartimos las partes de la presentación y acordamos que cada uno explica su área de trabajo.
 
-## Resumen de seguimiento semanal
-
-| Semana | Actividad principal | Estado |
-|---|---|---|
-| 1 | Planificación, roles, stack tecnológico | ✅ Completado |
-| 2 | Esqueleto HTML/CSS, estructura JS, modelo SQL | ✅ Completado |
-| 3 | Funcionalidades, responsive, backend API | ✅ Completado |
-| 4 | Integración frontend-backend, pruebas, correcciones | ✅ Completado |
-| 5 | Despliegue, documentación final, presentación | ✅ Completado |
+**Resultado:** proyecto entregado con todas las funcionalidades funcionando, documentación completa y sitio publicado.

@@ -1,189 +1,121 @@
-# Informe del proyecto — Apoyo Joven
+# Informe del proyecto — Apoyo Joven / Santiago Joven
 
 ## 1. Introducción
 
-Apoyo Joven es una plataforma web orientada a reunir información, programas e instancias de participación para jóvenes. El proyecto busca facilitar el acceso a actividades, voluntariado, talleres, preuniversitario y programas institucionales mediante una interfaz simple, clara y adaptable a distintos dispositivos.
+Este proyecto nació a partir de la necesidad de Santiago Joven de tener una plataforma web donde pudieran publicar sus actividades, talleres y programas de forma ordenada y accesible para los jóvenes. Antes de esto, no tenían una forma centralizada de mostrar lo que ofrecen ni de recibir inscripciones de manera organizada.
 
-El sitio fue desarrollado como proyecto académico integrando tres áreas de trabajo: diseño frontend, programación con JavaScript, y base de datos con documentación.
-
----
-
-## 2. Objetivo general
-
-Desarrollar un sitio web funcional y responsive que permita informar, registrar usuarios, gestionar actividades con cupos limitados, publicar contenidos, administrar una galería y entregar soporte básico a jóvenes participantes.
+Nosotros, como equipo de tres integrantes del curso Desarrollo Web I, decidimos construir una solución real que les sirva: un sitio web donde cualquier persona pueda ver los programas disponibles, inscribirse en actividades y contactar al equipo. Y desde el lado administrativo, que el personal de Santiago Joven pueda actualizar todo eso sin necesidad de saber programar.
 
 ---
 
-## 3. Objetivos específicos
+## 2. Qué queríamos lograr
 
-- Mejorar la experiencia visual mediante un diseño moderno y minimalista.
-- Facilitar la navegación en celulares, tablets y computadores.
-- Incorporar registro, inicio y recuperación de acceso con validaciones.
-- Implementar inscripciones con control automático de cupos (máximo 40 por actividad).
-- Centralizar los programas Lazos, SENDA y Educere con sus contenidos.
-- Publicar secciones de Voluntariado Santo Tomás, Actividades Recreativas y Preuniversitario.
-- Permitir gestión completa de actividades, noticias, galería, usuarios y soporte desde panel administrativo.
-- Preparar el proyecto para publicación en hosting estático (Netlify / GitHub Pages).
-- Documentar pruebas, arquitectura, modelo de datos y evidencias.
+El objetivo principal era simple: que el sitio funcionara de verdad. No solo que se viera bonito, sino que tuviera lógica real detrás.
+
+Lo que nos propusimos hacer desde el principio:
+
+- Que el sitio se viera bien en celular, tablet y computador
+- Que los usuarios pudieran registrarse e iniciar sesión
+- Que las inscripciones a actividades tuvieran un límite de cupos real
+- Que el administrador pudiera gestionar todo desde un panel, sin tocar el código
+- Que los datos se guardaran en una base de datos de verdad (SQL Server)
+- Publicar el sitio en internet para que cualquiera pudiera acceder
 
 ---
 
-## 4. Descripción de los programas institucionales
+## 3. Programas de Santiago Joven
+
+Para entender bien qué contenidos debía tener el sitio, investigamos los tres programas principales que ofrece Santiago Joven:
 
 ### Programa Lazos
 
-Programa de prevención e intervención temprana orientado a jóvenes y sus familias. Su objetivo es detectar situaciones de vulnerabilidad de forma oportuna y ofrecer orientación, acompañamiento y derivación a redes de apoyo comunitario e institucional.
-
-**Servicios:**
-- Orientación familiar y personal.
-- Detección temprana de situaciones de riesgo.
-- Derivación a redes de apoyo especializadas.
-- Talleres de habilidades sociales y comunicación.
+Es un programa de apoyo para jóvenes y familias que están pasando por situaciones difíciles. El objetivo es detectar el problema a tiempo y orientarlos hacia la red de apoyo adecuada, ya sea profesional, familiar o comunitaria. Ofrece talleres de habilidades sociales y acompañamiento personalizado.
 
 ### Programa SENDA
 
-Programa de prevención del consumo de alcohol, drogas y otras sustancias, dependiente del Servicio Nacional para la Prevención y Rehabilitación del Consumo de Drogas y Alcohol. Trabaja con jóvenes, colegios y organizaciones comunitarias.
-
-**Servicios:**
-- Talleres preventivos en establecimientos educacionales.
-- Información confiable sobre consecuencias del consumo.
-- Espacios de orientación, escucha y apoyo.
-- Participación comunitaria y autocuidado.
+Este programa trabaja la prevención del consumo de alcohol y drogas. Lo hacen principalmente en colegios y organizaciones juveniles, con talleres educativos, espacios de conversación y entrega de información confiable. El foco está en el autocuidado y la participación activa de los jóvenes.
 
 ### Programa Educere
 
-Programa de acompañamiento académico y desarrollo personal para jóvenes en etapa escolar. Apoya el rendimiento académico, la orientación vocacional y el crecimiento formativo de manera integral.
-
-**Servicios:**
-- Apoyo académico en asignaturas clave.
-- Orientación vocacional y educativa.
-- Desarrollo de habilidades personales.
-- Talleres de metodología de estudio.
+Apoya a estudiantes que necesitan reforzamiento académico o que están buscando orientación vocacional. Tiene talleres de metodología de estudio, apoyo en asignaturas como matemática y lenguaje, y acompañamiento para decidir qué hacer después del colegio.
 
 ---
 
-## 5. Alcance implementado
+## 4. Lo que construimos
 
-La entrega incluye una aplicación web estática construida con HTML, CSS y JavaScript. Todos los módulos funcionan dentro del navegador y utilizan LocalStorage para conservar los cambios durante la demostración. La carpeta `database` contiene el modelo SQL y el backend Node.js para una versión productiva.
+### Diseño y visual
 
-### Diseño y experiencia de usuario (Integrante 1)
+El integrante 1 se encargó de todo lo visual. Construyó la estructura HTML del sitio con semántica correcta (usando etiquetas como `header`, `section`, `article`, `footer`), diseñó los estilos en CSS usando variables para los colores, y se aseguró de que el sitio se adaptara a distintos tamaños de pantalla.
 
-- Interfaz minimalista con jerarquía visual clara y paleta de colores institucional.
-- Tipografía de sistema para reducir dependencias y mejorar la carga.
-- Menú hamburguesa adaptable y navegación por anclas.
-- Diseño responsive con breakpoints en 1040 px, 800 px y 560 px.
-- Galería filtrable por categoría con visualización ampliada (lightbox).
-- Sección Voluntariado Santo Tomás con imagen, información y cuadrícula de detalles.
-- Sección Actividades Recreativas con tarjetas dinámicas y filtros.
-- Sección Preuniversitario con módulos por asignatura.
-- Estados visuales de foco, error, éxito y bloqueo en todos los componentes interactivos.
+El resultado fue un sitio limpio, moderno y que funciona bien desde un celular de 360px hasta un monitor de 1920px. El menú en celular se convierte en un botón hamburguesa, las tarjetas de actividades se apilan, los formularios se reorganizan solos.
 
-### Programación y funcionalidades (Integrante 2)
+### Funcionalidades
 
-- Registro de usuarios con validación de correo único y contraseña segura (mínimo 8 caracteres con letras y números).
-- Inicio de sesión con hash de contraseña y persistencia de sesión.
-- Recuperación de acceso en modo demostrativo.
-- Tres roles de acceso: Administrador, Editor y Visitante.
-- Inscripción a actividades con formulario, validaciones y confirmación.
-- Límite de 40 cupos por actividad con bloqueo automático al completarse.
-- Mensaje de "Cupos agotados" y botón deshabilitado.
-- Prevención de inscripciones duplicadas por correo y actividad.
-- Carga de imágenes para galería (URL externa o archivo local hasta 1,5 MB).
-- Sistema de contacto/soporte con registro de consultas.
-- Sección de preguntas frecuentes (FAQ) con acordeón.
-- Chat de orientación básica automático.
-- Encuesta de satisfacción con calificación 1–5.
-- Panel administrativo completo con gestión de actividades, noticias, galería, usuarios y soporte.
-- Exportación de datos a JSON.
+El integrante 2 programó toda la lógica del sitio en JavaScript. Lo más destacado:
 
-### Base de datos y documentación (Integrante 3)
+- Sistema de registro e inicio de sesión con validaciones reales (el correo no puede duplicarse, la contraseña necesita letras y números, mínimo 8 caracteres)
+- Inscripciones a actividades con control de cupos: cuando se llena el límite, el botón se bloquea y aparece "Cupos agotados"
+- Panel administrativo donde el administrador puede crear actividades, publicar noticias, subir fotos a la galería y revisar las consultas de soporte
+- Sistema de roles: Administrador, Editor y Visitante, cada uno ve cosas distintas según su nivel de acceso
+- FAQ con acordeón, chat de orientación automática y encuesta de satisfacción
 
-- Modelo relacional completo en `database/schema.sql` para MySQL 8.x.
-- Tablas: `roles`, `usuarios`, `actividades`, `inscripciones`, `noticias`, `galeria`, `encuestas`, `respuestas_encuesta`, `mensajes_soporte`, `recuperacion_acceso`.
-- Roles configurados: Administrador, Editor, Visitante.
-- Datos iniciales: usuarios, actividades, noticias, galería y encuesta de demostración.
-- Backend Node.js en `database/apoyo_joven_backend/index.js` con API REST completa.
-- Endpoints para todos los módulos: actividades, inscripciones, usuarios, noticias, galería, encuestas y soporte.
-- Transacciones SQL para control de cupos sin condición de carrera.
-- Hosting configurado con `netlify.toml`.
-- Repositorio organizado con estructura clara.
-- Documentación técnica, informe, pruebas funcionales y guía de evidencias.
+### Base de datos y backend
+
+El integrante 3 diseñó el modelo de base de datos en SQL Server y programó el backend con Node.js. Se crearon 10 tablas relacionadas: usuarios, actividades, inscripciones, noticias, galería, encuestas, respuestas, mensajes de soporte y recuperación de acceso.
+
+El backend expone una API REST con 20 rutas. Cuando alguien se inscribe en el sitio, el dato viaja al servidor y se guarda en SQL Server usando una transacción para evitar que dos personas tomen el último cupo al mismo tiempo.
+
+También se publicó el sitio en Netlify y se subió todo al repositorio de GitHub.
 
 ---
 
-## 6. Roles del sistema
+## 5. Cómo Santiago Joven puede actualizar el sitio
 
-| Rol | Descripción | Permisos |
-|---|---|---|
-| Administrador | Gestión total del sistema | Crear/editar actividades, noticias, galería; cambiar roles; ver soporte y encuestas; exportar; restablecer demostración |
-| Editor | Gestión de contenidos | Crear/editar actividades, noticias, galería; revisar soporte. Sin acceso a roles ni restablecimiento |
-| Visitante | Usuario registrado | Navegar, inscribirse, enviar soporte, responder encuestas |
+Una de las cosas que más nos importaba era que el personal de Santiago Joven pudiera mantener el sitio actualizado sin necesidad de llamarnos. Para eso existe el Panel Administrativo.
 
----
+Desde ahí, con solo ingresar con su usuario y contraseña, pueden:
+- Crear o editar actividades (nombre, fecha, cupos, descripción)
+- Publicar noticias
+- Subir fotos a la galería
+- Ver las consultas que les mandan los usuarios
+- Gestionar los roles de los usuarios registrados
 
-## 7. Sistema de cupos
-
-Cada actividad tiene un límite máximo definido en la base de datos. El sistema calcula:
-
-```
-cupos disponibles = capacidad total − inscritos base − nuevas inscripciones
-```
-
-Cuando el resultado llega a cero:
-- El botón muestra "Inscripción cerrada" y queda deshabilitado.
-- La barra de progreso se colorea en rojo.
-- El estado muestra "Cupos agotados".
-- No es posible inscribirse, incluso si el usuario intenta acceder directamente.
-
-En el backend con SQL Server se usa `UPDLOCK + HOLDLOCK` dentro de una transacción para evitar sobreventa en accesos concurrentes.
+Todo desde el navegador, sin tocar ningún archivo de código.
 
 ---
 
-## 8. Arquitectura técnica
+## 6. Cómo funcionan los cupos
 
-### Versión de evaluación (estática)
+Cada actividad tiene un número máximo de inscritos. El sistema calcula cuántos quedan disponibles en tiempo real. Cuando llega a cero, el botón de inscripción se deshabilita y aparece el mensaje de cupos agotados.
 
-```
-Navegador → index.html + styles.css + script.js → LocalStorage
-```
-
-No requiere servidor. Publicable en Netlify o GitHub Pages.
-
-### Versión productiva (recomendada)
-
-```
-Navegador
-   │ HTTPS
-API REST (Node.js / Express)  ← database/apoyo_joven_backend/index.js
-   ├── Autenticación y autorización (JWT / sesiones)
-   ├── Gestión de actividades y cupos con transacciones SQL
-   ├── Envío de correos (recuperación de acceso)
-   └── Carga segura de imágenes (almacenamiento de objetos)
-        │
-SQL Server / MySQL  ← database/schema.sql
-```
+En el backend, esto se maneja con una transacción SQL que bloquea la fila de la actividad antes de insertar la inscripción, para que no haya problemas si dos personas intentan tomar el último cupo al mismo tiempo.
 
 ---
 
-## 9. Despliegue
+## 7. Tecnologías que usamos
 
-### Netlify (versión estática)
+- HTML, CSS y JavaScript para el frontend
+- Node.js con Express para el backend
+- SQL Server con T-SQL para la base de datos
+- LocalStorage como respaldo cuando el servidor no está disponible
+- Netlify para el despliegue del sitio estático
+- GitHub para el repositorio del proyecto
 
-1. Ingresar a [netlify.com](https://netlify.com).
-2. Seleccionar **Add new site → Deploy manually**.
-3. Arrastrar la carpeta que contiene `index.html`.
-4. URL publicada: **https://inspiring-truffle-0a3982.netlify.app**
-
-### GitHub Pages
-
-1. Subir todos los archivos a un repositorio en GitHub.
-2. En **Settings → Pages**, seleccionar rama `main` y carpeta `/root`.
-3. Guardar y esperar la generación de la URL.
+Elegimos este stack porque es el que aprendimos durante el semestre y porque nos permitía construir algo real y funcional sin depender de frameworks complejos que no dominamos bien todavía.
 
 ---
 
-## 10. Conclusión
+## 8. Dónde está todo
 
-La versión final cumple con todos los módulos solicitados para la evaluación académica. El sitio ofrece una experiencia visual consistente en escritorio, tablet y celular, y demuestra la lógica completa de usuarios, contenidos, cupos, galería, soporte y administración.
+- Sitio publicado: https://inspiring-truffle-0a3982.netlify.app
+- Repositorio: https://github.com/nunezdarla708-star/Santiago-joven
 
-El modelo relacional (`schema.sql`) y el backend Node.js dejan una ruta clara y documentada para evolucionar desde la demostración local con LocalStorage hacia una arquitectura productiva con base de datos real, autenticación segura y almacenamiento de archivos en servidor.
+---
+
+## 9. Conclusión
+
+Estamos conformes con lo que logramos. El sitio tiene todo lo que pedía la evaluación y más: funciona en distintos dispositivos, tiene base de datos real, el administrador puede gestionar contenidos sin tocar el código, y quedó publicado en internet.
+
+Hubo dificultades en el camino, como el problema de compatibilidad entre la sintaxis de MySQL y SQL Server, o la configuración del CORS para que el celular pudiera conectarse al backend. Pero las fuimos resolviendo entre los tres.
+
+Lo más valioso fue aprender a conectar todas las partes: el frontend, el backend y la base de datos trabajando juntos en un proyecto real.

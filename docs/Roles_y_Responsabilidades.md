@@ -1,91 +1,51 @@
-# Roles y Responsabilidades del Equipo — Apoyo Joven
+# Roles y responsabilidades del equipo
 
-## Distribución del equipo
-
-El proyecto fue desarrollado por tres integrantes con roles definidos desde el inicio, cada uno responsable de un área específica del sistema.
+Somos tres integrantes y desde el principio dividimos el trabajo en tres áreas claras para que cada uno tuviera responsabilidad sobre una parte específica del proyecto.
 
 ---
 
-## Integrante 1 — Diseño Frontend y Experiencia de Usuario
+## Integrante 1 — Diseño y frontend
 
-**Responsabilidades:**
-- Diseño visual general del sitio web
-- Maquetación HTML de todas las secciones
-- Diseño y desarrollo de la galería de imágenes con filtros y lightbox
-- Sección Voluntariado Santo Tomás
-- Sección Actividades Recreativas
-- Sección Preuniversitario
-- Adaptación responsive para celulares, tablets y computadores
-- Optimización de colores, tipografías y espaciados
-- Corrección de estilos CSS
-- Organización visual de formularios y botones
+Se encargó de todo lo visual: la estructura HTML y los estilos CSS.
 
-**Entregables verificables:**
-- Archivo `styles.css` — sistema de variables CSS, grid, flexbox, media queries
-- Archivo `index.html` — estructura semántica completa con todas las secciones
-- Diseño responsivo probado en resoluciones 360px, 390px, 768px, 1024px, 1366px y 1920px
-- Galería con 4 categorías, filtros y visualización ampliada
+Lo que hizo concretamente:
+- Armó todas las secciones del sitio: el hero de entrada, los programas Lazos, SENDA y Educere, las actividades, el voluntariado, el preuniversitario, la galería, el soporte y el footer
+- Diseñó el sistema de estilos con variables CSS para los colores y tamaños, lo que hace que sea fácil cambiar el diseño desde un solo lugar
+- Hizo que el sitio funcione bien en celular, tablet y computador usando media queries en tres puntos de quiebre distintos
+- En celular el menú se transforma en un botón de tres rayas, las tarjetas se apilan en una columna y los formularios se reorganizan solos
+
+**Archivos que produjo:** `index.html`, `styles.css`
 
 ---
 
-## Integrante 2 — Programación y Funcionalidades
+## Integrante 2 — Programación y funcionalidades
 
-**Responsabilidades:**
-- Desarrollo JavaScript completo del sitio
-- Sistema de inicio de sesión con hash de contraseña
-- Sistema de registro de usuarios con validaciones
-- Recuperación de acceso
-- Formulario de inscripción a actividades con límite de 40 cupos
-- Mensaje de cupos agotados y bloqueo de botón
-- Carga de imágenes para la galería (URL o archivo local)
-- Sistema de contacto y soporte
-- Sección de preguntas frecuentes (FAQ) con acordeón
-- Chat de orientación básica
-- Corrección de errores de JavaScript
-- Pruebas funcionales de todos los módulos
+Se encargó de toda la lógica del sitio en JavaScript.
 
-**Entregables verificables:**
-- Archivo `script.js` — sistema completo encapsulado, sin variables globales
-- Sistema de autenticación con 3 roles: Administrador, Editor, Visitante
-- Panel administrativo con 5 secciones: Actividades, Noticias, Galería, Usuarios, Soporte
-- 18 pruebas funcionales documentadas en `docs/Pruebas_Funcionales.md`
-- Integración con API REST para envío de datos a SQL Server
+Lo que hizo concretamente:
+- Sistema completo de registro de usuarios con validaciones: el correo no puede repetirse, la contraseña necesita al menos 8 caracteres con letras y números
+- Sistema de inicio de sesión con hash de contraseña y recuperación de acceso
+- Inscripciones a actividades con control de cupos: cuando se llena el límite, el botón se bloquea automáticamente
+- Prevención de inscripciones duplicadas: el mismo correo no puede inscribirse dos veces en la misma actividad
+- Panel administrativo para gestionar actividades, noticias, galería, usuarios y soporte
+- FAQ con acordeón, chat de ayuda automática, encuesta de satisfacción y exportación de datos a JSON
+- Integración con el backend: los formularios de inscripción, soporte y encuesta envían los datos al servidor usando `fetch`
+
+**Archivos que produjo:** `script.js`
 
 ---
 
-## Integrante 3 — Base de Datos, Hosting y Documentación
+## Integrante 3 — Base de datos, backend y despliegue
 
-**Responsabilidades:**
-- Diseño del modelo relacional de la base de datos
-- Creación de tablas: Usuarios, Actividades, Inscripciones, Noticias, Galería, Encuestas, Soporte
-- Configuración de roles: Administrador, Editor, Visitante
-- Datos iniciales de los programas: Lazos, SENDA, Educere, Preuniversitario
-- Desarrollo del backend Node.js con API REST (20 rutas)
-- Configuración de hosting y despliegue en Netlify
-- Mantenimiento del repositorio GitHub
-- Elaboración del informe de avance
-- Documentación técnica completa
-- Preparación de la entrega final
+Se encargó de la parte técnica del servidor y de dejar todo documentado y publicado.
 
-**Entregables verificables:**
-- Archivo `database/schema.sql` — modelo T-SQL completo para SQL Server con datos iniciales
-- Archivo `database/apoyo_joven_backend/index.js` — API REST con Express y SQL Server
-- Sitio publicado en Netlify: https://inspiring-truffle-0a3982.netlify.app
-- Documentos: `Informe_Proyecto.md`, `Documentacion_Tecnica.md`, `Pruebas_Funcionales.md`, `Evidencias.md`
-- `README.md` con instrucciones completas de instalación y ejecución
+Lo que hizo concretamente:
+- Diseñó el modelo relacional de la base de datos con 10 tablas en SQL Server: usuarios, actividades, inscripciones, noticias, galería, encuestas, respuestas de encuesta, mensajes de soporte, roles y recuperación de acceso
+- Configuró los tres roles del sistema: Administrador, Editor y Visitante
+- Programó el backend en Node.js con Express: 20 rutas que reciben los datos del sitio y los guardan en SQL Server
+- Las inscripciones usan transacciones SQL con bloqueo de fila para evitar sobreventa de cupos
+- Publicó el sitio en Netlify
+- Subió el código a GitHub
+- Escribió la documentación: informe del proyecto, pruebas funcionales, guía de actualización de contenidos para Santiago Joven, stack tecnológico, registro de reuniones y tablero de tareas
 
----
-
-## Resumen de participación
-
-| Área | Integrante 1 | Integrante 2 | Integrante 3 |
-|---|---|---|---|
-| HTML semántico | ✅ Principal | — | — |
-| CSS y responsive | ✅ Principal | — | — |
-| JavaScript / lógica | — | ✅ Principal | — |
-| Validaciones y formularios | — | ✅ Principal | — |
-| Base de datos SQL | — | — | ✅ Principal |
-| Backend Node.js / API | — | ✅ Integración | ✅ Principal |
-| Hosting y despliegue | — | — | ✅ Principal |
-| Documentación | ✅ Revisión | ✅ Pruebas | ✅ Principal |
-| Diseño visual | ✅ Principal | — | — |
+**Archivos que produjo:** `database/schema.sql`, `database/apoyo_joven_backend/index.js`, todos los documentos en `docs/`, `README.md`, `netlify.toml`

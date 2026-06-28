@@ -62,8 +62,8 @@
       {
         id: 'usr-admin',
         name: 'Administración',
-        lastname: 'Apoyo Joven',
-        email: 'admin@apoyojoven.cl',
+        lastname: 'Santiago Joven',
+        email: 'admin@santiagojoven.cl',
         phone: '',
         birthdate: '',
         passwordHash: hashText('Admin123!'),
@@ -74,7 +74,7 @@
         id: 'usr-editor',
         name: 'Editor',
         lastname: 'Contenidos',
-        email: 'editor@apoyojoven.cl',
+        email: 'editor@santiagojoven.cl',
         phone: '',
         birthdate: '',
         passwordHash: hashText('Editor123!'),
@@ -870,7 +870,7 @@
     if (/cupo|agotad|disponible/.test(text)) return 'Los cupos se actualizan en cada tarjeta. Cuando llegan a cero, el botón se bloquea automáticamente.';
     if (/inscri|registrar.*actividad/.test(text)) return 'Ve a Actividades, selecciona una opción con cupos y presiona “Inscribirme”. Debes ingresar nombre, correo y confirmar tus datos.';
     if (/contrase|clave|acceso|olvid/.test(text)) return 'Presiona “Ingresar”, abre la pestaña “Recuperar” y define una nueva contraseña para tu correo registrado.';
-    if (/lazos|senda|educere|programa/.test(text)) return 'En Programas encontrarás Lazos, SENDA y Educere, con una descripción de sus áreas de apoyo.';
+    if (text.includes('santiago') || text.includes('joven') || text.includes('programa')) return 'En Programas encontrarás Lazos, SENDA y Educere, con una descripción de sus áreas de apoyo.';
     if (/contact|soporte|ayuda|problema/.test(text)) return 'Completa el formulario de soporte en esta misma página. Tu consulta quedará disponible para el administrador.';
     if (/hola|buen/.test(text)) return 'Hola. Puedo orientarte sobre actividades, cupos, inscripciones, programas y recuperación de acceso.';
     return 'No encontré una respuesta exacta. Revisa las preguntas frecuentes o envía tu consulta mediante el formulario de soporte.';
