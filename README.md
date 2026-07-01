@@ -95,6 +95,7 @@ El servidor queda disponible en `http://localhost:3000`.
 
 | Método | Ruta | Descripción |
 |---|---|---|
+| POST | `/api/login` | Iniciar sesión (devuelve datos del usuario) |
 | GET | `/api/activities` | Actividades publicadas con cupos |
 | POST | `/api/activities` | Crear actividad (editor/admin) |
 | DELETE | `/api/activities/:id` | Despublicar actividad |
