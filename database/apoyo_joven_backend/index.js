@@ -64,6 +64,54 @@ app.get('/api/ping', (_req, res) => {
 });
 
 // ══════════════════════════════════════════════
+// MÓDULO: AUTENTICACIÓN
+// ══════════════════════════════════════════════
+
+// POST /api/login — Iniciar sesión (compara hash FNV-1a igual que el frontend)
+app.post('/api/login', async (req, res) => {
+  const { correo, password_hash } = req.body;
+  if (!correo || !password_hash) {
+    return res.status(400).json({ error: 'Faltan campos obligatorios.' });
+  }
+  try {
+    const result = await pool.request()
+      .input('correo', sql.VarChar(120), correo.toLowerCase().trim())
+      .query(`
+        SELECT u.id, u.nombre, u.apellido, u.correo, u.telefono,
+               u.fecha_nacimiento, u.password_hash, u.activo,
+               r.nombre AS rol
+        FROM usuarios u
+        INNER JOIN roles r ON u.rol_id = r.id
+        WHERE u.correo = @correo AND u.activo = 1;
+      `);
+
+    if (result.recordset.length === 0) {
+      return res.status(401).json({ error: 'Correo o contraseña incorrectos.' });
+    }
+
+    const user = result.recordset[0];
+    if (user.password_hash !== password_hash) {
+      return res.status(401).json({ error: 'Correo o contraseña incorrectos.' });
+    }
+
+    res.json({
+      status: 'success',
+      user: {
+        id:        String(user.id),
+        name:      user.nombre,
+        lastname:  user.apellido,
+        email:     user.correo,
+        phone:     user.telefono || '',
+        birthdate: user.fecha_nacimiento || '',
+        role:      user.rol
+      }
+    });
+  } catch (error) {
+    handleSqlError(res, error, 'POST /api/login');
+  }
+});
+
+// ══════════════════════════════════════════════
 // MÓDULO: ACTIVIDADES
 // ══════════════════════════════════════════════
 
@@ -556,6 +604,7 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor Apoyo Joven corriendo en http://localhost:${PORT}`);
   console.log('📋 Rutas disponibles:');
+  console.log('   POST /api/login');
   console.log('   GET  /api/activities');
   console.log('   POST /api/activities');
   console.log('   DEL  /api/activities/:id');

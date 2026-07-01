@@ -241,20 +241,26 @@ END
 GO
 
 -- Usuarios de demostración
-IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'admin@apoyojoven.cl')
+-- Nota: password_hash es el hash FNV-1a de 'Santiago2026!' generado por el frontend
+-- El mismo algoritmo hashText() del script.js produce: b02e1a81
+IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'admin@munistgo.cl')
 BEGIN
     INSERT INTO usuarios (nombre, apellido, correo, password_hash, rol_id)
-    VALUES ('Administración', 'Apoyo Joven', 'admin@apoyojoven.cl',
-            'demo_hash_admin_123', 1);
+    VALUES ('Administración', 'Santiago Joven', 'admin@munistgo.cl',
+            'b02e1a81', 1);
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'editor@apoyojoven.cl')
+IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'editor@munistgo.cl')
 BEGIN
     INSERT INTO usuarios (nombre, apellido, correo, password_hash, rol_id)
-    VALUES ('Editor', 'Contenidos', 'editor@apoyojoven.cl',
-            'demo_hash_editor_123', 2);
+    VALUES ('Editor', 'Contenidos', 'editor@munistgo.cl',
+            'b02e1a81', 2);
 END
+GO
+
+-- Limpiar usuarios con correos anteriores incorrectos si existen
+DELETE FROM usuarios WHERE correo IN ('admin@apoyojoven.cl', 'editor@apoyojoven.cl');
 GO
 
 -- Actividades de demostración
