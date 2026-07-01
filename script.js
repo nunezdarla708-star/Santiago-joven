@@ -444,11 +444,11 @@
     clearStatuses(['login-status', 'register-status', 'recover-status']);
   }
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
-    const emailInput = document.getElementById('login-email');
+    const emailInput    = document.getElementById('login-email');
     const passwordInput = document.getElementById('login-password');
-    const status = document.getElementById('login-status');
+    const status        = document.getElementById('login-status');
     clearInvalid(event.currentTarget);
 
     if (!validateForm(event.currentTarget)) {
@@ -456,14 +456,56 @@
       return;
     }
 
-    const email = normalizeEmail(emailInput.value);
+    const email    = normalizeEmail(emailInput.value);
+    const pwdHash  = hashText(passwordInput.value);
+
+    // ── Intentar login contra el backend SQL Server ──────────
+    const apiResult = await apiPost('/api/login', { correo: email, password_hash: pwdHash });
+
+    if (apiResult) {
+      // El backend respondió
+      if (apiResult.status !== 'success') {
+        setStatus(status, apiResult.error || 'Correo o contraseña incorrectos.', 'error');
+        return;
+      }
+      // Login correcto en SQL Server: sincronizar con LocalStorage
+      const serverUser = {
+        id:           apiResult.user.id,
+        name:         apiResult.user.name,
+        lastname:     apiResult.user.lastname,
+        email:        apiResult.user.email,
+        phone:        apiResult.user.phone || '',
+        birthdate:    apiResult.user.birthdate || '',
+        passwordHash: pwdHash,
+        role:         apiResult.user.role,
+        createdAt:    new Date().toISOString()
+      };
+      // Actualizar o insertar en LocalStorage para que el resto de la app funcione
+      const users = getData(STORAGE.users);
+      const idx   = users.findIndex(u => normalizeEmail(u.email) === email);
+      if (idx >= 0) {
+        users[idx] = { ...users[idx], ...serverUser };
+      } else {
+        users.push(serverUser);
+      }
+      setData(STORAGE.users, users);
+      state.currentUser = idx >= 0 ? users[idx] : serverUser;
+      localStorage.setItem(STORAGE.session, state.currentUser.id);
+      event.currentTarget.reset();
+      setStatus(status, 'Acceso correcto.', 'success');
+      renderAll();
+      window.setTimeout(() => closeModal('auth-modal'), 450);
+      toast(`Bienvenido, ${state.currentUser.name}.`, 'success');
+      return;
+    }
+
+    // ── Fallback: login local con LocalStorage ───────────────
     const users = getData(STORAGE.users);
-    const user = users.find(item => normalizeEmail(item.email) === email && item.passwordHash === hashText(passwordInput.value));
+    const user  = users.find(u => normalizeEmail(u.email) === email && u.passwordHash === pwdHash);
     if (!user) {
       setStatus(status, 'Correo o contraseña incorrectos.', 'error');
       return;
     }
-
     state.currentUser = user;
     localStorage.setItem(STORAGE.session, user.id);
     event.currentTarget.reset();
@@ -891,7 +933,8 @@
     document.getElementById('admin-gallery-list').addEventListener('click', handleAdminGalleryAction);
     document.getElementById('admin-users-table').addEventListener('click', handleAdminUserAction);
     document.getElementById('admin-support-list').addEventListener('click', handleSupportAction);
-    document.getElementById('export-data-button').addEventListener('click', exportData);
+    document.getElementById('export-data-button').addEventListener('click', openExportModal);
+    document.getElementById('export-form').addEventListener('submit', handleExport);
     document.getElementById('reset-data-button').addEventListener('click', resetDemoData);
   }
 
@@ -1208,28 +1251,147 @@
     }
   }
 
-  function exportData() {
-    const exportObject = {
-      exportedAt: new Date().toISOString(),
-      users: getData(STORAGE.users).map(({ passwordHash, ...user }) => user),
-      activities: getData(STORAGE.activities),
-      registrations: getData(STORAGE.registrations),
-      gallery: getData(STORAGE.gallery).map(item => ({ ...item, src: item.src.startsWith('data:') ? '[imagen local omitida]' : item.src })),
-      news: getData(STORAGE.news),
-      support: getData(STORAGE.support),
-      surveys: getData(STORAGE.surveys)
+  // ── Exportación de datos ─────────────────────────────────────
+  function openExportModal() {
+    // Poblar selector de actividades
+    const activities = getData(STORAGE.activities);
+    const select = document.getElementById('export-activity-id');
+    select.innerHTML = '<option value="">Selecciona una actividad</option>';
+    activities
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(activity => {
+        const option = document.createElement('option');
+        option.value = activity.id;
+        option.textContent = `${activity.name} (${formatDate(activity.date)})`;
+        select.appendChild(option);
+      });
+
+    // Mostrar / ocultar selector según opción elegida
+    const scopeInputs = document.querySelectorAll('input[name="export-scope"]');
+    const activitySelector = document.getElementById('export-activity-selector');
+    const updateSelector = () => {
+      const val = document.querySelector('input[name="export-scope"]:checked')?.value;
+      activitySelector.classList.toggle('hidden', val !== 'inscripciones-actividad');
     };
-    const blob = new Blob([JSON.stringify(exportObject, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
+    scopeInputs.forEach(input => input.addEventListener('change', updateSelector));
+    updateSelector();
+
+    // Reset form
+    document.getElementById('export-form').reset();
+    document.getElementById('export-status').textContent = '';
+    activitySelector.classList.add('hidden');
+
+    openModal('export-modal');
+  }
+
+  function handleExport(event) {
+    event.preventDefault();
+    const scope   = document.querySelector('input[name="export-scope"]:checked')?.value || 'todo';
+    const format  = document.querySelector('input[name="export-format"]:checked')?.value || 'json';
+    const status  = document.getElementById('export-status');
+
+    const activities    = getData(STORAGE.activities);
+    const registrations = getData(STORAGE.registrations);
+    const users         = getData(STORAGE.users).map(({ passwordHash, ...u }) => u);
+    const news          = getData(STORAGE.news);
+    const surveys       = getData(STORAGE.surveys);
+    const support       = getData(STORAGE.support);
+
+    let data = null;
+    let filename = '';
+
+    if (scope === 'todo') {
+      data = { exportedAt: new Date().toISOString(), users, activities, registrations, news, surveys, support };
+      filename = `apoyo-joven-completo-${today()}`;
+    } else if (scope === 'actividades') {
+      data = activities;
+      filename = `apoyo-joven-actividades-${today()}`;
+    } else if (scope === 'inscripciones') {
+      // Enriquecer con nombre de actividad
+      data = registrations.map(r => {
+        const act = activities.find(a => a.id === r.activityId);
+        return { ...r, activityName: act ? act.name : r.activityId };
+      });
+      filename = `apoyo-joven-inscripciones-${today()}`;
+    } else if (scope === 'inscripciones-actividad') {
+      const actId = document.getElementById('export-activity-id').value;
+      if (!actId) {
+        setStatus(status, 'Selecciona una actividad.', 'error');
+        return;
+      }
+      const act = activities.find(a => a.id === actId);
+      data = registrations
+        .filter(r => r.activityId === actId)
+        .map(r => ({ ...r, activityName: act ? act.name : actId }));
+      filename = `apoyo-joven-inscripciones-${slugify(act?.name || actId)}-${today()}`;
+    } else if (scope === 'usuarios') {
+      data = users;
+      filename = `apoyo-joven-usuarios-${today()}`;
+    } else if (scope === 'noticias') {
+      data = news;
+      filename = `apoyo-joven-noticias-${today()}`;
+    } else if (scope === 'encuestas') {
+      data = surveys;
+      filename = `apoyo-joven-encuestas-${today()}`;
+    } else if (scope === 'soporte') {
+      data = support;
+      filename = `apoyo-joven-soporte-${today()}`;
+    }
+
+    if (!data || (Array.isArray(data) && data.length === 0 && scope !== 'todo')) {
+      setStatus(status, 'No hay datos para exportar en esta selección.', 'error');
+      return;
+    }
+
+    if (format === 'csv') {
+      const rows = Array.isArray(data) ? data : [data];
+      downloadFile(toCSV(rows), `${filename}.csv`, 'text/csv;charset=utf-8;');
+    } else {
+      downloadFile(JSON.stringify(Array.isArray(data) ? data : data, null, 2), `${filename}.json`, 'application/json');
+    }
+
+    setStatus(status, 'Archivo descargado correctamente.', 'success');
+    toast('Exportación completada.', 'success');
+    window.setTimeout(() => closeModal('export-modal'), 900);
+  }
+
+  function toCSV(rows) {
+    if (!rows || rows.length === 0) return '';
+    // Obtener todas las claves únicas (union de todos los objetos)
+    const keys = [...new Set(rows.flatMap(row => Object.keys(row)))];
+    const escape = value => {
+      const str = String(value ?? '').replace(/"/g, '""');
+      return /[,"\n\r]/.test(str) ? `"${str}"` : str;
+    };
+    const header = keys.map(escape).join(',');
+    const body = rows.map(row => keys.map(k => escape(row[k] ?? '')).join(',')).join('\n');
+    return `\uFEFF${header}\n${body}`; // BOM para que Excel abra correctamente con tildes
+  }
+
+  function downloadFile(content, filename, mimeType) {
+    const blob = new Blob([content], { type: mimeType });
+    const url  = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = `apoyo-joven-export-${new Date().toISOString().slice(0, 10)}.json`;
+    anchor.download = filename;
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();
     URL.revokeObjectURL(url);
-    toast('Datos exportados.', 'success');
   }
+
+  function today() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  function slugify(text) {
+    return String(text).toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 40);
+  }
+
 
   function resetDemoData() {
     if (!isAdmin() || !window.confirm('Se eliminarán cuentas, inscripciones, consultas y cambios locales. ¿Continuar?')) return;

@@ -440,7 +440,7 @@
         <section class="admin-view active" data-admin-panel="dashboard">
           <div class="admin-kpis" id="admin-kpis"></div>
           <div class="admin-actions-row">
-            <button class="button button-primary" id="export-data-button" type="button">Exportar datos JSON</button>
+            <button class="button button-primary" id="export-data-button" type="button">⬇ Exportar datos</button>
             <button class="button button-danger" id="reset-data-button" type="button" data-admin-only>Restablecer demostración</button>
           </div>
           <div class="admin-note"><strong>Importante:</strong> esta entrega funciona con LocalStorage para poder publicarse en Netlify o GitHub Pages. La carpeta <code>database</code> incluye el modelo SQL recomendado para una versión con backend real.</div>
@@ -526,6 +526,56 @@
   </aside>
 
   <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Modal exportación -->
+  <div class="modal" id="export-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+    <div class="modal-backdrop" data-close-modal="export-modal"></div>
+    <div class="modal-panel" role="document" style="width:min(560px,100%)">
+      <button class="modal-close" data-close-modal="export-modal" type="button" aria-label="Cerrar">×</button>
+      <span class="eyebrow">Panel administrativo</span>
+      <h2 id="export-modal-title">Exportar datos</h2>
+      <p>Elige qué datos exportar y en qué formato.</p>
+
+      <form id="export-form" class="stack-form" novalidate>
+
+        <!-- Qué exportar -->
+        <fieldset>
+          <legend>¿Qué deseas exportar?</legend>
+          <div style="display:grid;gap:10px;margin-top:8px">
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="todo" checked> Todo (completo)</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="actividades"> Solo actividades</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="inscripciones"> Solo inscripciones</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="inscripciones-actividad"> Inscripciones de una actividad específica</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="usuarios"> Solo usuarios</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="noticias"> Solo noticias</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="encuestas"> Solo encuestas</label>
+            <label class="checkbox-label"><input type="radio" name="export-scope" value="soporte"> Solo consultas de soporte</label>
+          </div>
+        </fieldset>
+
+        <!-- Selector de actividad específica (visible solo si aplica) -->
+        <div id="export-activity-selector" class="hidden">
+          <label>Actividad
+            <select id="export-activity-id">
+              <option value="">Selecciona una actividad</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Formato -->
+        <fieldset>
+          <legend>Formato de exportación</legend>
+          <div style="display:flex;gap:20px;margin-top:8px">
+            <label class="checkbox-label"><input type="radio" name="export-format" value="json" checked> JSON</label>
+            <label class="checkbox-label"><input type="radio" name="export-format" value="csv"> CSV (Excel)</label>
+          </div>
+        </fieldset>
+
+        <button class="button button-primary" type="submit">⬇ Descargar archivo</button>
+        <p class="form-status" id="export-status" role="status"></p>
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>

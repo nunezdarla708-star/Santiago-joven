@@ -218,6 +218,10 @@ input:focus, select:focus, textarea:focus { border-color: var(--primary); box-sh
 input.invalid, select.invalid, textarea.invalid { border-color: var(--danger); box-shadow: 0 0 0 4px rgba(220,38,38,.08); }
 .checkbox-label { display: flex; align-items: flex-start; gap: 9px; font-weight: 600; }
 .checkbox-label input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); }
+.checkbox-label input[type="radio"] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); }
+fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+fieldset legend { font-weight: 800; padding: 0 6px; color: var(--ink); }
+
 .form-status { min-height: 22px; margin: 0; font-size: .88rem; font-weight: 700; }
 .form-status.success { color: #047857; }
 .form-status.error { color: var(--danger); }
