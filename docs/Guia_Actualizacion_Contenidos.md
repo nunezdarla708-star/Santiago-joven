@@ -24,8 +24,8 @@ Desde el **Panel Administrativo** del sitio, un usuario con rol Administrador o 
 1. Abrir el sitio en el navegador
 2. Hacer clic en el botón **Ingresar** (arriba a la derecha)
 3. Ingresar con las credenciales de administrador:
-   - Correo: `admin@apoyojoven.cl`
-   - Contraseña: `Admin123!`
+   - Correo: `admin@munistgo.cl`
+   - Contraseña: `Santiago2026!`
 4. Una vez dentro, aparece el botón **Panel** en la barra de navegación
 5. Hacer clic en **Panel** para abrir el panel administrativo
 

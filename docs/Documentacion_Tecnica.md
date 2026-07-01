@@ -5,8 +5,10 @@
 - HTML5 semántico.
 - CSS3 con variables, Grid, Flexbox y media queries.
 - JavaScript ES6 sin frameworks.
-- LocalStorage para persistencia de demostración.
-- Netlify o GitHub Pages para hosting estático.
+- LocalStorage para persistencia de demostración (fallback cuando el backend no está disponible).
+- Node.js con Express para la API REST productiva.
+- SQL Server (T-SQL) como base de datos relacional.
+- Netlify para hosting del frontend estático.
 
 ## 2. Estructura
 
@@ -58,7 +60,7 @@ Admite una URL externa o una imagen local. Los archivos locales se transforman a
 
 ### Exportación
 
-El panel genera un archivo JSON con la información local. Los hashes de contraseña y archivos de imagen locales se omiten del archivo exportado.
+El panel ofrece un modal con opciones para elegir qué datos exportar (todo, actividades, inscripciones, inscripciones de una actividad específica, usuarios, noticias, encuestas, soporte) y en qué formato (JSON o CSV compatible con Excel). Los hashes de contraseña y archivos de imagen locales se omiten del archivo exportado.
 
 ## 4. Validaciones
 

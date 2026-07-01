@@ -75,7 +75,7 @@ Completar esta tabla al realizar las pruebas antes de la entrega:
 
 | PF-17 | Usuarios | Administrador cambia rol de Visitante a Editor | Rol actualizado en la tabla de usuarios |  Aprobada 
 
-| PF-18 | Exportar | Panel → Exportar datos JSON | Navegador descarga archivo `.json` con los datos |  Aprobada 
+| PF-18 | Exportar | Panel → Exportar datos (modal con opciones de sección y formato) | Navegador descarga archivo `.json` o `.csv` según la selección | Aprobada 
 
 ---
 
