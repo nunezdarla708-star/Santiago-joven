@@ -267,19 +267,19 @@ GO
 
 -- Usuarios de demostración
 -- password_hash = hash FNV-1a de 'Santiago2026!' (función hashText en script.js)
--- Valor resultante: b02e1a81
+-- Valor resultante: 471ab70c
 -- En producción reemplazar por bcrypt con sal (nunca texto plano ni FNV-1a)
 IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'admin@munistgo.cl')
 BEGIN
     INSERT INTO usuarios (nombre, apellido, correo, password_hash, rol_id)
-    VALUES ('Administración', 'Santiago Joven', 'admin@munistgo.cl', 'b02e1a81', 1);
+    VALUES ('Administración', 'Santiago Joven', 'admin@munistgo.cl', '471ab70c', 1);
 END
 GO
 
 IF NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'editor@munistgo.cl')
 BEGIN
     INSERT INTO usuarios (nombre, apellido, correo, password_hash, rol_id)
-    VALUES ('Editor', 'Contenidos', 'editor@munistgo.cl', 'b02e1a81', 2);
+    VALUES ('Editor', 'Contenidos', 'editor@munistgo.cl', '471ab70c', 2);
 END
 GO
 
