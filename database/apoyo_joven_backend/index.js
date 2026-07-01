@@ -32,7 +32,7 @@ app.use(express.json());
 // ─────────────────────────────────────────────
 const dbConfig = {
   connectionString:
-    'Driver={ODBC Driver 17 for SQL Server};Server=DESKTOP-EI3QAO0\\SQLEXPRESS;Database=apoyo_joven;Trusted_Connection=Yes;'
+    'Driver={ODBC Driver 17 for SQL Server};Server=DESKTOP-EI3QAO0\\SQLEXPRESS;Database=Santiago_joven;Trusted_Connection=Yes;'
 };
 
 let pool;
