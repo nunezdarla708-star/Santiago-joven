@@ -103,7 +103,8 @@ app.post('/api/login', async (req, res) => {
         email:     user.correo,
         phone:     user.telefono || '',
         birthdate: user.fecha_nacimiento || '',
-        role:      user.rol
+        // Normalizar rol al formato que espera el frontend
+        role: ({ 'Administrador': 'admin', 'Editor': 'editor', 'Visitante': 'visitor' })[user.rol] || 'visitor'
       }
     });
   } catch (error) {

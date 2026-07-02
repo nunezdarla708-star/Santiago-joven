@@ -446,12 +446,13 @@
 
   async function handleLogin(event) {
     event.preventDefault();
+    const form          = event.currentTarget;  // guardar ANTES del await
     const emailInput    = document.getElementById('login-email');
     const passwordInput = document.getElementById('login-password');
     const status        = document.getElementById('login-status');
-    clearInvalid(event.currentTarget);
+    clearInvalid(form);
 
-    if (!validateForm(event.currentTarget)) {
+    if (!validateForm(form)) {
       setStatus(status, 'Completa correctamente el correo y la contraseña.', 'error');
       return;
     }
@@ -489,9 +490,14 @@
         users.push(serverUser);
       }
       setData(STORAGE.users, users);
-      state.currentUser = idx >= 0 ? users[idx] : serverUser;
+      // Asignar el objeto ya actualizado a state.currentUser
+      const updatedUser = { ...(idx >= 0 ? users[idx] : {}), ...serverUser };
+      if (idx >= 0) users[idx] = updatedUser;
+      else users.push(updatedUser);
+      setData(STORAGE.users, users);
+      state.currentUser = updatedUser;
       localStorage.setItem(STORAGE.session, state.currentUser.id);
-      event.currentTarget.reset();
+      form.reset();
       setStatus(status, 'Acceso correcto.', 'success');
       renderAll();
       window.setTimeout(() => closeModal('auth-modal'), 450);
@@ -508,7 +514,7 @@
     }
     state.currentUser = user;
     localStorage.setItem(STORAGE.session, user.id);
-    event.currentTarget.reset();
+    form.reset();
     setStatus(status, 'Acceso correcto.', 'success');
     renderAll();
     window.setTimeout(() => closeModal('auth-modal'), 450);
