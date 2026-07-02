@@ -56,7 +56,7 @@
 #### Netlify
 **Justificación:** Netlify ofrece hosting gratuito para sitios estáticos con despliegue por arrastrar la carpeta, CDN global, HTTPS automático y URL pública inmediata. No requiere configuración de servidor, es ideal para proyectos académicos y permite que el socio comunitario acceda al sitio desde cualquier dispositivo sin instalación.
 
-- **URL publicada:** https://inspiring-truffle-0a3982.netlify.app
+- **URL publicada:** https://santiagojoven.netlify.app
 - **Configuración:** `netlify.toml` con cabeceras de seguridad y caché
 
 ---

@@ -103,7 +103,7 @@ Completar esta tabla al realizar las pruebas antes de la entrega:
 ## Hosting
 
 - Plataforma: Netlify
-- URL publicada: `https://inspiring-truffle-0a3982.netlify.app`
+- URL publicada: `https://santiagojoven.netlify.app`
 - Fecha de publicación: 27 Junio 2026
 
 ---

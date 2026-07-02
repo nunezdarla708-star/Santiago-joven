@@ -17,7 +17,7 @@
 
 | Recurso | Enlace |
 |---|---|
-| **Sitio publicado (Netlify)** | https://inspiring-truffle-0a3982.netlify.app |
+| **Sitio publicado (Netlify)** | https://santiagojoven.netlify.app |
 | **Repositorio GitHub** | https://github.com/nunezdarla708-star/Santiago-joven |
 
 ### Credenciales de prueba
@@ -86,7 +86,7 @@ Santiago.Joven_FINAL/
 ## Cómo revisar el proyecto
 
 ### Opción 1 — Revisión rápida (sin instalar nada)
-1. Abrir el enlace de Netlify: https://inspiring-truffle-0a3982.netlify.app
+1. Abrir el enlace de Netlify: https://santiagojoven.netlify.app
 2. Ingresar con `admin@munistgo.cl` / `Santiago2026!`
 3. Explorar el sitio y el panel administrativo
 

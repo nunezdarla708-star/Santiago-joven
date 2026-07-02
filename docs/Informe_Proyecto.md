@@ -107,7 +107,7 @@ Elegimos este stack porque es el que aprendimos durante el semestre y porque nos
 
 ## 8. Dónde está todo
 
-- Sitio publicado: https://inspiring-truffle-0a3982.netlify.app
+- Sitio publicado: https://santiagojoven.netlify.app
 - Repositorio: https://github.com/nunezdarla708-star/Santiago-joven
 
 ---
